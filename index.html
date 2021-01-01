@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066) -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <title>吖远zzy 安卓APP下载列表 - app.hzv5.cn</title>
+    <link href="./bass.css" rel="stylesheet">
+    <link href="./index.css" rel="stylesheet">
+	<link rel="icon" href="./favicon.png">
+	
+    <script src="./jquery-3.3.1.min.js" type="text/javascript"></script>
+	<style type="text/css">
+        .res
+        {
+            color: Red;
+        }
+        .result{
+            background: yellow;
+        }
+    </style>
+    <script type="text/javascript">
+        var oldKey = "";
+        var index = -1;
+        var pos = new Array();//用于记录每个关键词的位置，以方便跳转
+        var oldCount = 0;//记录搜索到的所有关键词总数
+        
+        function previous(){
+            index--;
+            index = index < 0 ? oldCount - 1 : index;
+            search();
+        }
+        function next(){
+            index++;
+            //index = index == oldCount ? 0 : index;
+            if(index==oldCount){
+                index = 0 ;
+            }
+            search();
+        }
+ 
+        function search() {
+            $(".result").removeClass("res");//去除原本的res样式
+            var key = $("#key").val(); //取key值
+            if (!key) {
+                console.log("key为空则退出");
+                $(".result").each(function () {//恢复原始数据
+                    $(this).replaceWith($(this).html());
+                });
+                oldKey = "";
+                return; //key为空则退出
+            }
+            if (oldKey != key) {
+                console.log("进入重置方法");
+                //重置
+                index = 0;
+                $(".result").each(function () {
+                    $(this).replaceWith($(this).html());
+                });
+                pos = new Array();
+                var regExp = new RegExp(key+'(?!([^<]+)?>)', 'ig');//正则表达式匹配
+                $("body").html($("body").html().replace(regExp, "<span id='result" + index + "' class='result'>" + key + "</span>")); // 高亮操作
+                $("#key").val(key);
+                oldKey = key;
+                $(".result").each(function () {
+                    pos.push($(this).offset().top);
+                });
+                oldCount = $(".result").length;
+                console.log("oldCount值：",oldCount);
+            }
+ 
+            $(".result:eq(" + index + ")").addClass("res");//当前位置关键词改为红色字体
+            $("body").scrollTop(pos[index]);//跳转到指定位置
+        }
+    </script>
+	
+</head>
+<body>
+        <!--通讯录搜索栏-->
+		<div class="contact">
+        	<div class="contact-search">
+            	<i class="icon-uniE90F"></i>
+            	<input style="width: 70%;" id="key" type="search" placeholder="输入搜索内容...">
+				<input style="float:right; width: 14%; border-radius: 6px; text-indent: 0rem; border: outset 2px #ddd;" type="button" value="上一个" onclick="previous()" />
+				<input style="float:right; width: 14%; border-radius: 6px; text-indent: 0rem; border: outset 2px #ddd; margin-right:
+6px;" type="button" value="下一个" onclick="next()" />
+             </div>
+		<!--通讯录搜索栏end-->
+        <!--联系人-->
+			<div class="contact-content">         
+                <div class="Letter-jump">
+                    <a name="A" class="letter-a">A</a>   
+                    <a href="http://dz.hzv5.cn/%E6%8C%89%E9%9C%80%E6%88%90%E8%AF%AD%E6%9F%A5%E8%AF%A2_v1.0_By%E5%90%96%E8%BF%9Czzy_20190814.apk">                                    
+                        <img src="./cycx.png"> 按需成语查询 - 1.07MB
+                    </a>  
+                </div>  
+                <div class="Letter-jump">
+                    <a name="B" class="letter-a">B</a>   
+                    <a href="http://dz.hzv5.cn/BlogRss20191214.apk">                                    
+                        <img src="./hexo.png"> BlogRss - 3.31MB
+                    </a>  
+                </div>  
+                <div class="Letter-jump">
+                    <a name="D" class="letter-a">D</a>   
+                    <a href="https://dz.hzv5.cn/%E6%8A%96%E9%9F%B3%E8%A7%86%E9%A2%91%E8%A7%A3%E6%9E%90_%E5%8E%BB%E6%B0%B4%E5%8D%B0_By%E5%90%96%E8%BF%9Czzy_20200323.apk">                                    
+                        <img src="./dyjx.png"> 抖音去水印印解析 - 2.27MB
+                    </a>  
+                </div>   
+                <div class="Letter-jump">
+                    <a name="S" class="letter-a">S</a>   
+                    <a href="http://dz.hzv5.cn/%E4%BF%97%E9%9B%85%E5%B9%B6%E5%AD%9820191209.apk">                                    
+                        <img src="./ysbc.png"> 俗雅并存 - 1.99MB
+                    </a>  
+                </div>  
+                <div class="Letter-jump">
+                    <a name="T" class="letter-a">T</a>   
+                    <a href="http://dz.hzv5.cn/%E8%88%94%E7%8B%97%E6%97%A5%E8%AE%B0_v1.0_By%E5%90%96%E8%BF%9Czzy_20200328.apk">                                    
+                        <img src="./tgrj.png"> 舔狗日记 - 1.85MB
+                    </a>  
+                </div>
+                <div class="Letter-jump">
+                    <a name="W" class="letter-a">W</a>   
+                    <a href="http://dz.hzv5.cn/%E6%96%87%E5%AD%97%E5%90%90%E8%AF%AD%E9%9F%B3_By_%E5%90%96%E8%BF%9Czzy_20200318.apk">                                    
+                        <img src="./wztyy.png"> 文字吐语音 - 3.64MB
+                    </a>  
+                </div> 
+                
+			</div>
+            <!--联系人end-->
+            <!--字母检索列表-->
+            <div class="letter-search">
+            	<ul>
+                	<a href="#A"><li>A</li></a>
+                    <a href="#B"><li>B</li></a>
+                    <a href="#C"><li>C</li></a>
+                    <a href="#D"><li>D</li></a>
+                    <a href="#E"><li>E</li></a>
+                    <a href="#F"><li>F</li></a>
+                    <a href="#G"><li>G</li></a>
+                    <a href="#H"><li>H</li></a>
+                    <a href="#I"><li>I</li></a>
+                    <a href="#J"><li>J</li></a>
+                    <a href="#K"><li>K</li></a>
+                    <a href="#L"><li>L</li></a>
+                    <a href="#N"><li>N</li></a>
+                    <a href="#M"><li>M</li></a>
+                    <a href="#O"><li>O</li></a>
+                    <a href="#P"><li>P</li></a>
+                    <a href="#Q"><li>Q</li></a>
+                    <a href="#R"><li>R</li></a>
+                    <a href="#S"><li>S</li></a>
+                    <a href="#T"><li>T</li></a>
+                    <a href="#U"><li>U</li></a>
+                    <a href="#V"><li>V</li></a>
+                    <a href="#W"><li>W</li></a>
+                    <a href="#X"><li>X</li></a>
+                    <a href="#Y"><li>Y</li></a>
+                    <a href="#Z"><li>Z</li></a>
+                  </ul>
+                </div>      
+                  <!--字母检索列表end-->  
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="https://s22.cnzz.com/z_stat.php?id=1266069698&web_id=1266069698"></script>
+
+
+</body>
+
+</html>
