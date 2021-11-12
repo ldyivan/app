@@ -811,7 +811,7 @@ promotion
 }
 
 #promotion {
-  padding: 100px 0px;
+  padding: 200px 0px;
 }
 
 #promotion .left-image {
@@ -978,8 +978,8 @@ footer
 }
 
 footer {
-  margin-top: 200px;
-  padding-top: 220px;
+  /*margin-top: 200px;*/
+  /*padding-top: 220px;*/
   background-image: url(../images/footer-bg.png);
   /*background-repeat: no-repeat;*/
   /*background-position: center center;*/
