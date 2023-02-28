@@ -1,16 +1,59 @@
 [
-	{"name" : "swordman"},
-	{"name" : "swordman_at"},
-	{"name" : "fighter_at"},
-	{"name" : "fighter"},
-	{"name" : "gunner"},
-	{"name" : "gunner_at"},
-	{"name" : "mage_at"},
-	{"name" : "mage"},
-	{"name" : "priest"},
-	{"name" : "priest_at"},
-	{"name" : "thief"},
-	{"name" : "knight"},
-	{"name" : "demoniclancer"},
-	{"name" : "gunblader"},
+    
+    {
+        "name":"swordman"
+    },
+    
+    {
+        "name":"swordman_at"
+    },
+    
+    {
+        "name":"fighter_at"
+    },
+    
+    {
+        "name":"fighter"
+    },
+    
+    {
+        "name":"gunner"
+    },
+    
+    {
+        "name":"gunner_at"
+    },
+    
+    {
+        "name":"mage_at"
+    },
+    
+    {
+        "name":"mage"
+    },
+    
+    {
+        "name":"priest"
+    },
+    
+    {
+        "name":"priest_at"
+    },
+    
+    {
+        "name":"thief"
+    },
+    
+    {
+        "name":"knight"
+    },
+    
+    {
+        "name":"demoniclancer"
+    },
+    
+    {
+        "name":"gunblader"
+    },
+    
 ]
