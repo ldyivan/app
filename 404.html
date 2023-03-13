@@ -19,14 +19,44 @@
 <meta name="twitter:title" content="404 Not Found：该页无法显示">
   
 
+    <script src="//volunteer.cdn-go.cn/404/latest/404.js" rendertarget="404DIV"></script>
+	<!-- <script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8" homePageUrl="/" homePageName="回到我的主页"></script> -->
 
+	<script>
+		function countDown(){
+			//获取初始时间
+			var time = document.getElementById("Time");
+			
+			//获取到id为time标签中的数字时间
+			if(time.innerHTML == 1){
+				//等于0时清除计时，并跳转该指定页面
+				window.location.href="//app.hzv5.cn/";
+			}else{
+				time.innerHTML = time.innerHTML-1;
+			}
+		}
+		//1000毫秒调用一次
+		window.setInterval("countDown()",1000);
+	</script>
+	
+	<style>
+		#Time,#p{
+			font-size: 100px;
+			text-align: center;
+		}
+		#Font,#p{
+			font-size: 30px;
+			text-align: center;
+		}
+	</style>
+	
 </head>
 </html>
 <body>
-      
-    <script src="//volunteer.cdn-go.cn/404/latest/404.js" rendertarget="404DIV"></script>
 
-	<!-- <script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8" homePageUrl="/" homePageName="回到我的主页"></script> -->
-      
+<font color="yellow"><p id="Time" >6</p></font>
+<div id="404DIV"></div>
+<p id="Font"> <a href="//app.hzv5.cn/">>>> 返回主页</a> </p>
+
 </body>
 </html>
