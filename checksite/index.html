@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页自适应效果检查工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        *::-webkit-scrollbar {
+            display: none;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e90ff, #00bfff);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            position: relative;
+            z-index: 1000;
+            flex-shrink: 0;
+        }
+        
+        .input-group {
+            flex: 1;
+            display: flex;
+            gap: 10px;
+            position: relative;
+        }
+        
+        .input-url {
+            flex: 1;
+            height: 40px;
+            padding: 0 35px 0 15px;
+            border: 1px solid #dcdfe6;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .btn {
+            height: 40px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 4px;
+            background: #fff;
+            color: #606266;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .preview-container {
+            position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .devices-wrapper {
+            position: relative;
+            width: 1200px;
+            height: 800px;
+            transform-origin: center center;
+        }
+        
+        .device {
+            position: absolute;
+            background: #000;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            bottom: 50px;
+            padding: 12px;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            will-change: transform;
+        }
+        
+        .device-header {
+            display: none;
+        }
+        
+        .desktop {
+            width: 1024px;
+            height: 768px;
+            transform: scale(0.7) translateZ(0);
+            transform-origin: center bottom;
+            z-index: 1;
+            left: 50%;
+            bottom: 0;
+            margin-left: -512px;
+        }
+        
+        .tablet {
+            width: 768px;
+            height: 1024px;
+            transform: scale(0.45) translateZ(0);
+            transform-origin: center bottom;
+            z-index: 2;
+            left: 50%;
+            bottom: 0;
+            margin-left: 100px;
+        }
+        
+        .mobile {
+            width: 375px;
+            height: 667px;
+            transform: scale(0.55) translateZ(0);
+            transform-origin: center bottom;
+            z-index: 3;
+            left: 60%;
+            bottom: 0;
+            margin-left: -700px;
+        }
+        
+        .device-content {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            will-change: transform;
+        }
+
+        .device-content::before {
+            content: '加载中...';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #666;
+            display: none;
+        }
+
+        .device-content.loading::before {
+            display: block;
+        }
+
+        /* 创建一个包装器来处理滚动 */
+        .iframe-wrapper {
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            overflow: scroll;
+            margin-right: -20px;
+            margin-bottom: -20px;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #fff;
+            border-radius: 20px;
+            display: block;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            overflow: hidden;
+        }
+
+        /* 移除所有滚动条样式 */
+        .iframe-wrapper::-webkit-scrollbar,
+        .iframe-wrapper::-webkit-scrollbar-track,
+        .iframe-wrapper::-webkit-scrollbar-thumb,
+        .iframe-wrapper::-webkit-scrollbar-corner {
+            width: 0 !important;
+            height: 0 !important;
+            display: none !important;
+            background: transparent !important;
+        }
+
+        .iframe-wrapper {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        @media (max-width: 1800px) {
+            .devices-wrapper {
+                transform: scale(0.9);
+            }
+        }
+
+        @media (max-width: 1600px) {
+            .devices-wrapper {
+                transform: scale(0.8);
+            }
+        }
+
+        @media (max-width: 1400px) {
+            .devices-wrapper {
+                transform: scale(0.7);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .devices-wrapper {
+                transform: scale(0.6);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .preview-container {
+                height: calc(100vh - 200px);
+                padding: 20px;
+            }
+
+            .devices-wrapper {
+                transform: scale(0.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .devices-wrapper {
+                transform: scale(0.4);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .devices-wrapper {
+                transform: scale(0.3);
+            }
+        }
+
+        /* 添加清空按钮样式 */
+        .clear-input {
+            position: absolute;
+            right: 90px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: #999;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            line-height: 1;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .clear-input::before {
+            content: '×';
+        }
+
+        .clear-input:hover {
+            opacity: 1;
+        }
+
+        .input-url:not(:placeholder-shown) + .clear-input {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="input-group">
+            <input type="text" 
+                class="input-url"
+                placeholder="请输入网页地址"
+                id="urlInput">
+            <span class="clear-input" onclick="clearInput()"></span>
+            <button class="btn" onclick="loadUrl()">预览</button>
+        </div>
+    </div>
+    
+    <div class="preview-container">
+        <div class="devices-wrapper">
+            <div class="device desktop">
+                <div class="device-header">Desktop (1024x768)</div>
+                <div class="device-content">
+                    <div class="iframe-wrapper">
+                        <iframe id="desktopFrame"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="device tablet">
+                <div class="device-header">Tablet (768x1024)</div>
+                <div class="device-content">
+                    <div class="iframe-wrapper">
+                        <iframe id="tabletFrame"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="device mobile">
+                <div class="device-header">Mobile (375x667)</div>
+                <div class="device-content">
+                    <div class="iframe-wrapper">
+                        <iframe id="mobileFrame"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadUrl() {
+            const urlInput = document.getElementById('urlInput');
+            let url = urlInput.value.trim();
+            
+            if (!url) {
+                alert('请输入网页地址');
+                return;
+            }
+            
+            if (!/^https?:\/\//i.test(url)) {
+                url = 'https://' + url;
+                urlInput.value = url;
+            }
+            
+            const frames = ['desktopFrame', 'tabletFrame', 'mobileFrame'];
+            frames.forEach(frameId => {
+                const frame = document.getElementById(frameId);
+                const deviceContent = frame.closest('.device-content');
+                
+                // 显示loading
+                deviceContent.classList.add('loading');
+                
+                // 监听iframe加载完成
+                frame.onload = () => {
+                    deviceContent.classList.remove('loading');
+                };
+                
+                // 监听加载失败
+                frame.onerror = () => {
+                    deviceContent.classList.remove('loading');
+                    alert('页面加载失败，请检查网址是否正确');
+                };
+                
+                frame.src = url;
+            });
+        }
+
+        // 支持回车键触发预览
+        document.getElementById('urlInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                loadUrl();
+            }
+        });
+
+        function clearInput() {
+            const urlInput = document.getElementById('urlInput');
+            urlInput.value = '';
+            urlInput.focus();
+        }
+    </script>
+</body>
+</html> 
