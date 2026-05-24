@@ -1,0 +1,46 @@
+[
+  {
+    "name": "时装秀",
+    "image": "/static/button/zhuanpan.png",
+    "url": "/packageA/pages/dnfshow/dnfshow",
+    "type": "page",            // 分为：page、web、xcx、gzh、img
+    "sort": 1,
+    "style": "single"          // 可选：single(单排居中) 或 double(双排)
+  },
+  {
+    "name": "高清壁纸",
+    "image": "/static/button/bizhi.png",
+    "url": "/packageA/pages/wallpaper/wallpaper",
+    "type": "page",
+    "sort": 2
+  },
+  {
+    "name": "电费计算",
+    "image": "/static/button/js_Dianfei.png",
+    "url": "/packageC/pages/tools/electric",
+    "type": "page",
+    "sort": 3
+  },
+  {
+    "name": "房贷计算",
+    "image": "/static/button/js_house.png",
+    "url": "/packageC/pages/tools/house",
+    "type": "page",
+    "sort": 4
+  },
+  {
+    "name": "繁简转换",
+    "image": "/static/button/js_font.png",
+    "url": "/packageC/pages/tools/font",
+    "type": "page",
+    "sort": 5
+  },
+  {
+    "name": "更多工具",
+    "image": "/static/button/gengduo.png",
+    "url": "",
+    "type": "miniprogram",     // 示例：跳转外部小程序
+    "appid": "wxbd8f3e7ae375b844", //当 type = xcx 时使用
+    "path": "pages/index/index"    //当 type = xcx 时使用
+  }
+]
