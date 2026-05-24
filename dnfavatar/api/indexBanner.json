@@ -20,7 +20,7 @@
     
     {
         "name":"成语接龙查询",
-        "image":"https://mmbiz.qpic.cn/mmbiz_gif/c21HMlyWf58DrURZHr3E1TyMic1L4zl2UPnOxoibdQDfIUkvw2Hslk48py3gG3IJSEjNA8picYvjogGtXuavZjxTA/640",
+        "image":"https://api.hzv5.cn/xcx/banner_cy.png",
         "url":"https://api.hzv5.cn/idiom_jielong.php?word=%E4%B8%80%E5%BF%83%E4%B8%80%E6%84%8F&mode=loose&length=6&format=ui",
         "appid":"",
         "path":"",
