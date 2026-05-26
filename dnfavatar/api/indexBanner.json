@@ -20,7 +20,7 @@
     
     {
         "name":"成语接龙查询",
-        "image":https://api.hzv5.cn/xcx/banner_cy.png",
+        "image":"https://api.hzv5.cn/xcx/banner_cy.png",
         "url":"https://api.hzv5.cn/xcx/img_cyjl.png",
         "appid":"",
         "path":"",
