@@ -33,7 +33,7 @@
         "url": "/packageC/pages/tools/font",
         "type": "page",
         "sort": 5
-    },
+    }, 
     {
         "name": "抖音主页解析",
         "image": "https://api.hzv5.cn/xcx/tools_dyzy.png",
